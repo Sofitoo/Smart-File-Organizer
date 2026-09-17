@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smart-file-organizer"
+version = "0.1.0"
+description = "A small Python file organizer with a CLI and local web interface."
+readme = "README.md"
+requires-python = ">=3.12"
+
+[project.scripts]
+smart-organizer = "smart_organizer.cli:main"
+
+[project.optional-dependencies]
+web = ["fastapi>=0.115", "uvicorn>=0.30"]
+dev = ["pytest>=8", "httpx>=0.27"]
+
+[tool.setuptools.packages.find]
+include = ["smart_organizer*"]
+
+[tool.setuptools.package-data]
+"smart_organizer.web" = ["templates/*.html", "static/*.css", "static/*.js", "static/*.svg"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

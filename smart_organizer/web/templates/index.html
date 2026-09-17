@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f8fb">
+    <title>Smart File Organizer</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M8 15a4 4 0 0 1 4-4h9l4 4h11a4 4 0 0 1 4 4v17a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V15Z" stroke="currentColor" stroke-width="2.5"/><path d="M16 25h16M16 31h11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="hero-copy">
+          <span class="eyebrow">PYTHON AUTOMATION TOOL</span>
+          <h1>Smart File Organizer</h1>
+          <p>Organize messy folders in seconds.</p>
+        </div>
+      </header>
+
+      <section class="panel setup" aria-labelledby="setup-title">
+        <div class="section-heading compact">
+          <div>
+            <h2 id="setup-title">Choose a folder</h2>
+            <p>Enter a local path to see where each file will go.</p>
+          </div>
+          <span class="step-label">01 / ORGANIZE</span>
+        </div>
+        <form id="folder-form">
+          <label class="field-label" for="folder-path">Folder path</label>
+          <div class="path-row">
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10H3V7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+              <input id="folder-path" name="path" type="text" required spellcheck="false" autocomplete="off" placeholder="/home/you/Downloads" aria-describedby="path-help">
+            </div>
+            <button type="button" id="demo-button" class="button button-secondary" hidden>Use demo folder</button>
+            <button type="submit" id="analyze-button" class="button button-primary">Analyze Folder <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="form-footer">
+            <span id="path-help">Only files directly inside this folder are included.</span>
+            <label class="toggle-label" for="dry-run">
+              <span class="toggle-copy"><strong>Preview changes</strong><small>Dry Run · no files moved</small></span>
+              <input id="dry-run" type="checkbox" checked>
+              <span class="switch" aria-hidden="true"></span>
+            </label>
+          </div>
+        </form>
+      </section>
+
+      <div id="message" class="message" role="alert" hidden></div>
+
+      <section id="results" class="results" aria-live="polite" hidden>
+        <div class="section-heading results-heading">
+          <div>
+            <span class="eyebrow">02 / RESULTS</span>
+            <h2 id="results-title">Organization Preview</h2>
+            <p id="results-subtitle">A clear plan for every file in your folder.</p>
+          </div>
+          <span id="mode-pill" class="mode-pill">PREVIEW MODE</span>
+        </div>
+
+        <div class="stats" aria-label="Organization summary">
+          <div class="stat-card"><span class="stat-icon blue">▤</span><div><strong id="files-count">0</strong><span>Files found</span></div></div>
+          <div class="stat-card"><span class="stat-icon violet">▦</span><div><strong id="categories-count">0</strong><span>Categories</span></div></div>
+          <div class="stat-card"><span class="stat-icon amber">○</span><div><strong id="ignored-count">0</strong><span>Ignored</span></div></div>
+          <div class="stat-card"><span class="stat-icon green">✓</span><div><strong id="errors-count">0</strong><span>Errors</span></div></div>
+        </div>
+
+        <div class="panel file-panel">
+          <div class="panel-heading"><h3>File destinations</h3><span id="file-total">0 files</span></div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>File</th><th>Type</th><th>Destination</th><th>Status</th></tr></thead>
+              <tbody id="file-rows"></tbody>
+            </table>
+          </div>
+          <p id="empty-state" class="empty-state" hidden>No eligible files found in this folder.</p>
+        </div>
+
+        <div class="category-heading"><h3>Files by Category</h3><span>Organized at a glance</span></div>
+        <div id="category-cards" class="category-grid"></div>
+
+        <div class="action-bar">
+          <div><strong id="action-title">Ready to tidy up?</strong><p id="action-detail">Review the plan, then organize your files.</p></div>
+          <button id="organize-button" type="button" class="button button-primary">Organize Files <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <div id="confirmation" class="modal-backdrop" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-description">
+          <span class="modal-icon" aria-hidden="true">↗</span>
+          <h2 id="confirm-title">Organize this folder?</h2>
+          <p id="confirm-description">Files will move into category folders. Existing files will keep their names and contents.</p>
+          <div class="modal-path" id="confirm-path"></div>
+          <div class="modal-actions">
+            <button id="cancel-button" type="button" class="button button-secondary">Cancel</button>
+            <button id="confirm-button" type="button" class="button button-primary">Yes, organize files</button>
+          </div>
+        </div>
+      </div>
+
+      <footer>Made for cleaner folders. Powered by Python.</footer>
+    </main>
+  </body>
+</html>

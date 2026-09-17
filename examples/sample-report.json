@@ -1,0 +1,24 @@
+{
+  "source": "/home/user/Downloads",
+  "dry_run": false,
+  "processed": 3,
+  "moved_by_category": {
+    "Images": 1,
+    "Documents": 0,
+    "Spreadsheets": 0,
+    "PDFs": 1,
+    "Audio": 0,
+    "Video": 0,
+    "Archives": 0,
+    "Code": 0,
+    "Other": 1
+  },
+  "ignored": [".hidden", "Images"],
+  "errors": [],
+  "moves": [
+    {"file": "photo.jpg", "category": "Images", "destination": "Images/photo.jpg", "status": "moved"},
+    {"file": "report.pdf", "category": "PDFs", "destination": "PDFs/report.pdf", "status": "moved"},
+    {"file": "mystery.bin", "category": "Other", "destination": "Other/mystery.bin", "status": "moved"}
+  ],
+  "elapsed_seconds": 0.004
+}
